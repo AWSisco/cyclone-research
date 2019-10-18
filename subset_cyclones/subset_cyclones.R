@@ -7,7 +7,7 @@ library(dplyr)
 #==================================================================================================
 #Read cyclones.dat and add some additional fields
 
-cyclones <- read.delim(file = "cyclones.dat", header = FALSE, sep = "",
+cyclones <- read.delim(file = "subset_cyclones/cyclones.dat", header = FALSE, sep = "",
                        col.names = c("year", "month", "day", "hour", "lat", "lon", "vort"))
 
 dim(cyclones) #Raw data has 26414 cases
@@ -45,7 +45,7 @@ colnames(lat_lon) <- c("lat", "lon")
 merged_counts <- merge(winter_counts, lat_lon, all = TRUE)
 merged_counts$count[is.na(merged_counts$count)] <- 0
 count_data <- matrix(merged_counts$count, nrow = 25, byrow = TRUE)
-write.table(count_data, file = "winter_cyclone_counts.txt", sep = "\t", col.names = FALSE, row.names = FALSE)
+write.table(count_data, file = "subset_cyclones/winter_cyclone_counts.txt", sep = "\t", col.names = FALSE, row.names = FALSE)
 rm(winter_counts, lat, lon, lat_lon, merged_counts, count_data)
 #==================================================================================================
 
@@ -142,8 +142,8 @@ atl_era5_metadata <- data.frame(atl_id = atl_cases$atl_id,
                             domain_lonMin = atl_cases$domain_lonMin,
                             domain_lonMax = atl_cases$domain_lonMax)
 
-write.table(wnp_era5_metadata, "wnp_era5_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-write.table(atl_era5_metadata, "atl_era5_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE)
+write.table(wnp_era5_metadata, "subset_cyclones/wnp_era5_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE)
+write.table(atl_era5_metadata, "subset_cyclones/atl_era5_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE)
 
 #==================================================================================================
 #Prepare output files with metadata needed to obtain GEFS reforecast files
@@ -171,5 +171,5 @@ atl_gefs_metadata <- data.frame(dateTime = format(atl_cases$dateTime, "%Y%m%d%H"
                                 leadDateTime = format(atl_cases$leadDateTime, "%Y%m%d%H"),
                                 lon = format(round(atl_cases$lon, 1), nsmall = 1))
 
-write.table(wnp_gefs_metadata ,"wnp_gefs_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
-write.table(atl_gefs_metadata,"atl_gefs_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
+write.table(wnp_gefs_metadata ,"subset_cyclones/wnp_gefs_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
+write.table(atl_gefs_metadata,"subset_cyclones/atl_gefs_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
