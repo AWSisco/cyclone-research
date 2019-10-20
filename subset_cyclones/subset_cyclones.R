@@ -144,6 +144,16 @@ atl_era5_metadata <- data.frame(atl_id = atl_cases$atl_id,
 
 write.table(wnp_era5_metadata, "subset_cyclones/wnp_era5_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE)
 write.table(atl_era5_metadata, "subset_cyclones/atl_era5_metadata.txt", quote = FALSE, sep = "\t", row.names = FALSE)
+#==================================================================================================
+#Write files containing desired files names
+write.table(paste0(wnp_cases$wnp_id, "_sprd.grib2"), "filenames/wnp_sprd_filenames.txt", quote = FALSE,
+            row.names = FALSE, col.names = FALSE, sep = "\t")
+write.table(paste0(wnp_cases$wnp_id, "_sprd_t190.grib2"), "filenames/wnp_sprd_t190_filenames.txt", quote = FALSE,
+            row.names = FALSE, col.names = FALSE, sep = "\t")
+write.table(paste0(atl_cases$atl_id, "_sprd.grib2"), "filenames/atl_sprd_filenames.txt", quote = FALSE,
+            row.names = FALSE, col.names = FALSE, sep = "\t")
+write.table(paste0(atl_cases$atl_id, "_sprd_t190.grib2"), "filenames/atl_sprd_t190_filenames.txt", quote = FALSE,
+            row.names = FALSE, col.names = FALSE, sep = "\t")
 
 #==================================================================================================
 #Prepare output files with metadata needed to obtain GEFS reforecast files

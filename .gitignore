@@ -3,3 +3,7 @@
 .RData
 .Ruserdata
 .DS_Store
+/ERA5_data/*
+/.ipynb_checkpoints/*
+/som/atl_som_input.nc
+/som/wnp_som_input.nc
